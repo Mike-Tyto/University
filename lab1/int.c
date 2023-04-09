@@ -46,13 +46,6 @@ int GetInt(Int* integer) {
 	return integer->integer;
 }
 
-void FreeInt(Int* integer) {
-	free(integer->ring_info);
-	integer->ring_info = NULL;
-	free(integer);
-	integer = NULL;
-}
-
 Int* IntGenerate() {
 	return IntConstruct(rand() % 99 + 1);
 }
