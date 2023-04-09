@@ -12,10 +12,7 @@ void* IntSum(void*, void*);
 void* IntMult(void*, void*);
 Int* IntZero();
 Int* IntOne();
-
 Int* IntGenerate();
-void FreeInt(Int*);
 void IntPrint(void*);
-
 int GetInt(Int*);
 Int* IntLinMultGen();
