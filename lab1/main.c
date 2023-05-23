@@ -5,7 +5,6 @@
 #include "matrix.h"
 #include "int.h"
 #include "real.h"
-#include "ring_info.h"
 
 int main() {
 
@@ -45,7 +44,7 @@ int main() {
     Matrix *matrix1 = MatrixRandomGenerate(x->ring_info, height, width);
     MatrixPrint(matrix1);
 
-    switch (operation){
+    switch (operation) {
         case 1:
             printf("\nSecond matrix\n");
             Matrix *matrix2 = MatrixRandomGenerate(x->ring_info,
@@ -73,8 +72,12 @@ int main() {
             MatrixPrint(matrix_prod);
             break;
         case 4:
+            printf("Enter number of line where "
+                   "will be made a linear combination:\n");
+            int ind;
+            scanf("%d", &ind);
             printf("\nLinear combination of first matrix\n");
-            matrix1 = MatrixLinComb(matrix1);
+            matrix1 = MatrixLinComb(matrix1, ind);
             MatrixPrint(matrix1);
             break;
         default:

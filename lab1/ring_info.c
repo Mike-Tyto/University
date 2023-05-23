@@ -32,7 +32,7 @@ void SetLinMultGen(RingInfo* ring_info, LinMultGen lin_mult_gen) {
 
 RingInfo* RingInfoCreate(Sum sum, Mult mult, Zero zero, One one, Print print,
                          Generate generate, LinMultGen lin_mult_gen) {
-    struct RingInfo* ring_info = malloc(sizeof(struct RingInfo));
+    struct RingInfo* ring_info = (RingInfo*)malloc(sizeof(struct RingInfo));
     SetSum(ring_info, sum);
     SetMult(ring_info, mult);
     SetZero(ring_info, zero);

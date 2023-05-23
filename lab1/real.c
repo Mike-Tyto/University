@@ -5,7 +5,7 @@
 #include "real.h"
 
 Real* CreateReal() {
-	return malloc(sizeof(Real));
+	return (Real*)malloc(sizeof(Real));
 }
 
 Real* RealConstruct(double n) {
@@ -17,24 +17,24 @@ Real* RealConstruct(double n) {
 }
 
 void* RealSum(void* r1, void* r2) {
-	double real1 = GetReal(r1);
-	double real2 = GetReal(r2);
+	double real1 = GetReal((Real*)r1);
+	double real2 = GetReal((Real*)r2);
 	double res = real1 + real2;
 	return RealConstruct(res);
 }
 
 void* RealMult(void* r1, void* r2) {
-	double real1 = GetReal(r1);
-	double real2 = GetReal(r2);
+	double real1 = GetReal((Real*)r1);
+	double real2 = GetReal((Real*)r2);
 	double res = real1 * real2;
 	return RealConstruct(res);
 }
 
-Real* RealZero() {
-	return RealConstruct(0);
+void* RealZero() {
+	return (void*)RealConstruct(0);
 }
-Real* RealOne() {
-	return RealConstruct(1);
+void* RealOne() {
+	return (void*)RealConstruct(1);
 }
 void RealPrint(void* real) {
 	double value = GetReal((Real*)real);
@@ -45,10 +45,10 @@ double GetReal(Real* real) {
 	return real->real;
 }
 
-Real* RealGenerate() {
-	return RealConstruct((rand() % 4299)/43.0 + 1);
+void* RealGenerate() {
+	return (void*)RealConstruct((rand() % 4299)/43.0 + 1);
 }
 
-Real* RealLinMultGen() {
-    return RealConstruct((rand() % 9 - 4) + (rand() % 10) / 10.0);
+void* RealLinMultGen() {
+    return (void*)RealConstruct((rand() % 9 - 4) + (rand() % 10) / 10.0);
 }

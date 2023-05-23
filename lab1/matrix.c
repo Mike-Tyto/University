@@ -4,18 +4,19 @@
 #include "matrix.h"
 
 Element* ElementConstruct(RingInfo* ring_info, void* ptr) {
-    Element* el = malloc(sizeof(Element));
+    Element* el = (Element*)malloc(sizeof(Element));
     el->ring_info = ring_info;
     el->value = ptr;
     return el;
 }
+
 Matrix* MatrixConstruct(int height, int width) {
     Matrix* matrix = (Matrix*)malloc(sizeof(Matrix));
     matrix->width = width;
     matrix->height = height;
-    Element*** lines = malloc(height * sizeof(Element**));
+    Element*** lines = (Element***)malloc(height * sizeof(Element**));
     for (int i = 0; i < height; i++) {
-        lines[i] = malloc(width * sizeof(Element*));
+        lines[i] = (Element**)malloc(width * sizeof(Element*));
     }
 
     matrix->lines = lines;
@@ -101,15 +102,10 @@ Matrix* MatrixTransposition(Matrix* matrix1) {
     return matrix;
 }
 
-Matrix* MatrixLinComb(Matrix* matrix) {
+Matrix* MatrixLinComb(Matrix* matrix, int ind) {
     int width = matrix->width;
     int height = matrix->height;
     Element* el = matrix->lines[0][0];
-    int ind;
-    printf("Enter number of a line (from 0 to %d)", height - 1);
-    printf(" where you want make a linear combination:\n");
-    scanf("%d", &ind);
-    printf("Enter multiplier to every line:\n");
     for (int i = 0; i < height; i++) {
         if (i == ind) {
             continue;
@@ -125,5 +121,18 @@ Matrix* MatrixLinComb(Matrix* matrix) {
         }
     }
     return matrix;
+}
+
+void MatrixFree(Matrix* matrix){
+    int height = matrix->height;
+    int width = matrix->width;
+    for (size_t i = 0; i < height; i++) {
+        for (size_t j = 0; j < width; j++) {
+            free(matrix->lines[i][j]->value);
+        }
+        free(matrix->lines[i]);
+    }
+
+    free(matrix->lines);
 }
 

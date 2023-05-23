@@ -10,10 +10,10 @@ typedef struct Real {
 Real* RealConstruct(double);
 void* RealSum(void*, void*);
 void* RealMult(void*, void*);
-Real* RealZero();
-Real* RealOne();
+void* RealZero();
+void* RealOne();
 
-Real* RealGenerate();
+void* RealGenerate();
 void RealPrint(void*);
 double GetReal(Real*);
-Real* RealLinMultGen();
+void* RealLinMultGen();

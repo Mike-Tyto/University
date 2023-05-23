@@ -6,7 +6,7 @@
 #include "int.h"
 
 Int* CreateInt() {
-	return malloc(sizeof(Int));
+	return (Int*)malloc(sizeof(Int));
 }
 
 Int* IntConstruct(int n) {
@@ -17,25 +17,25 @@ Int* IntConstruct(int n) {
 }
 
 void* IntSum(void* r1, void* r2) {
-	double int1 = GetInt(r1);
-	double int2 = GetInt(r2);
-	double res = int1 + int2;
+	int int1 = GetInt((Int*)r1);
+	int int2 = GetInt((Int*)r2);
+	int res = int1 + int2;
 	return IntConstruct(res);
 }
 
 void* IntMult(void* r1, void* r2) {
-	int int1 = GetInt(r1);
-	int int2 = GetInt(r2);
+	int int1 = GetInt((Int*)r1);
+	int int2 = GetInt((Int*)r2);
 	int res = int1 * int2;
-	return IntConstruct(res);
+	return (void*)IntConstruct(res);
 }
 
-Int* IntZero() {
-	return IntConstruct(0);
+void* IntZero() {
+	return (void*)IntConstruct(0);
 }
 
-Int* IntOne() {
-	return IntConstruct(1);
+void* IntOne() {
+	return (void*)IntConstruct(1);
 }
 void IntPrint(void* integer) {
 	int value = GetInt((Int*)integer);
@@ -46,10 +46,10 @@ int GetInt(Int* integer) {
 	return integer->integer;
 }
 
-Int* IntGenerate() {
-	return IntConstruct(rand() % 99 + 1);
+void* IntGenerate() {
+	return (void*)IntConstruct(rand() % 99 + 1);
 }
 
-Int* IntLinMultGen() {
-    return IntConstruct(rand() % 11 - 5);
+void* IntLinMultGen() {
+    return (void*)IntConstruct(rand() % 11 - 5);
 }

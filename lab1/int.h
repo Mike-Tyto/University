@@ -10,9 +10,9 @@ typedef struct Int {
 Int* IntConstruct(int);
 void* IntSum(void*, void*);
 void* IntMult(void*, void*);
-Int* IntZero();
-Int* IntOne();
-Int* IntGenerate();
+void* IntZero();
+void* IntOne();
+void* IntGenerate();
 void IntPrint(void*);
 int GetInt(Int*);
-Int* IntLinMultGen();
+void* IntLinMultGen();

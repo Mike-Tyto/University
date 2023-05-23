@@ -8,4 +8,4 @@ cmake --build .
 
 cd ..
 
-./build/lab1
+./build/time_test
